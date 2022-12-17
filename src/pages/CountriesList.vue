@@ -2,31 +2,36 @@
   <div class="list-group">
     <div
       class="list-group-item list-group-item-action"
-      v-for="el in countries"
-      @click="showCountry(el)"
+      v-for="country in countryStore.countries"
+      @click="showCountry(country)"
     >
       <img
         :src="`https://flagpedia.net/data/flags/icon/72x54/
-${el.alpha2Code.toLowerCase()}.png`"
+${country.alpha2Code.toLowerCase()}.png`"
       />
-      <p>{{ el.name.common }}</p>
+      <p>{{ country.name.common }}</p>
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
+import { useCountryStore } from "../stores/country.js";
 
-const countries = ref(null);
+const countryStore = useCountryStore();
 
-async function getCountries() {
-  const res = await fetch("https://ih-countries-api.herokuapp.com/countries");
-  const finalRes = await res.json();
-  countries.value = finalRes;
-  console.log(finalRes);
-}
+countryStore.getCountries();
 
-getCountries();
+// const countries = ref(null);
+
+// async function getCountries() {
+//   const res = await fetch("https://ih-countries-api.herokuapp.com/countries");
+//   const finalRes = await res.json();
+//   countries.value = finalRes;
+//   console.log(finalRes);
+// }
+
+// getCountries();
 </script>
 
 <style></style>
