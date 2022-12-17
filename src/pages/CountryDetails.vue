@@ -9,7 +9,7 @@
     <img
       :src="`https://flagpedia.net/data/flags/icon/72x54/${countryStore.country.alpha2Code.toLowerCase()}.png`"
       alt="country flag"
-      style="width: 300px"
+      style="width: 150px"
     />
     <h1>{{ countryStore.country.name.common }}</h1>
     <table class="table">
