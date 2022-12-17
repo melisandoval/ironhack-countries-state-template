@@ -2,12 +2,11 @@
   <div class="list-group">
     <div
       class="list-group-item list-group-item-action"
-      v-for="country in countries"
-      @click="showCountry(country)"
+      v-for="country in countryStore.countries"
+      @click="showCountry(country._id)"
     >
       <img
-        :src="`https://flagpedia.net/data/flags/icon/72x54/
-${country.alpha2Code.toLowerCase()}.png`"
+        :src="`https://flagpedia.net/data/flags/icon/72x54/${country.alpha2Code.toLowerCase()}.png`"
       />
       <p>{{ country.name.common }}</p>
     </div>
@@ -15,9 +14,17 @@ ${country.alpha2Code.toLowerCase()}.png`"
 </template>
 
 <script setup>
-const props = defineProps(["countries"]);
-// import { ref } from "vue";
+import { useCountryStore } from "../stores/country.js";
+const countryStore = useCountryStore();
+countryStore.getCountries();
 
+function showCountry(countryId) {
+  countryStore.getCountryDetails(countryId);
+  console.log(countryStore.country.name.common);
+}
+
+// -- previous code --
+// import { ref } from "vue";
 // const countries = ref(null);
 
 // async function getCountries() {
@@ -26,7 +33,6 @@ const props = defineProps(["countries"]);
 //   countries.value = finalRes;
 //   console.log(finalRes);
 // }
-
 // getCountries();
 </script>
 
