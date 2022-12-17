@@ -13,7 +13,6 @@ export const useCountryStore = defineStore("country", {
       );
       const finalRes = await res.json();
       this.countries = finalRes;
-      console.log(finalRes);
     },
   },
 });

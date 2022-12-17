@@ -2,7 +2,7 @@
   <div class="list-group">
     <div
       class="list-group-item list-group-item-action"
-      v-for="country in countryStore.countries"
+      v-for="country in countries"
       @click="showCountry(country)"
     >
       <img
@@ -15,12 +15,8 @@ ${country.alpha2Code.toLowerCase()}.png`"
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { useCountryStore } from "../stores/country.js";
-
-const countryStore = useCountryStore();
-
-countryStore.getCountries();
+const props = defineProps(["countries"]);
+// import { ref } from "vue";
 
 // const countries = ref(null);
 
