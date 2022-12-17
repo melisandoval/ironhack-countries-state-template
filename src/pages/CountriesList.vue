@@ -20,7 +20,6 @@ countryStore.getCountries();
 
 function showCountry(countryId) {
   countryStore.getCountryDetails(countryId);
-  console.log(countryStore.country.name.common);
 }
 
 // -- previous code --

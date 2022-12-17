@@ -18,7 +18,6 @@ export const useCountryStore = defineStore("country", {
       );
       const finalRes = await res.json();
       this.countries = finalRes;
-      console.log(this.countries);
 
       if (res.error) {
         console.log(error);
